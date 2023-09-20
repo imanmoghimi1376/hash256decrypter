@@ -1,0 +1,20 @@
+import csv
+import hashlib
+# it should be your cvs file for example : iman , your hash code
+with open('your csv file direction', newline='') as f: 
+    reader = csv.reader(f)
+    for row in reader:
+        name = row[0]
+        myhas_list = list()
+        for myhas in row[1:]:
+            myhas_list.append(myhas)
+            
+for mynumbers in range(0, 10000):
+    mynumbers_string = str(mynumbers)
+    # print(mynumbers_string)
+    result = hashlib.sha256(mynumbers_string.encode())
+    my_list = list()
+    my_list.append(result.hexdigest())
+    
+    if my_list == myhas_list:
+        print("Hey %s your decrypted is : %s"%(name,mynumbers))
